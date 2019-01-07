@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TblcourseMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Tblcourse">
+    <id column="CourseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="CourseName" jdbcType="VARCHAR" property="coursename" />
+    <result column="TeaId" jdbcType="VARCHAR" property="teaid" />
+    <result column="FIELD1" jdbcType="VARCHAR" property="field1" />
+    <result column="FIELD2" jdbcType="INTEGER" property="field2" />
+    <result column="FIELD3" jdbcType="VARCHAR" property="field3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CourseId, CourseName, TeaId, FIELD1, FIELD2, FIELD3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tblcourse
+    where CourseId = #{courseid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tblcourse
+    where CourseId = #{courseid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Tblcourse">
+    insert into tblcourse (CourseId, CourseName, TeaId, 
+      FIELD1, FIELD2, FIELD3
+      )
+    values (#{courseid,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, #{teaid,jdbcType=VARCHAR}, 
+      #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=INTEGER}, #{field3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Tblcourse">
+    insert into tblcourse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        CourseId,
+      </if>
+      <if test="coursename != null">
+        CourseName,
+      </if>
+      <if test="teaid != null">
+        TeaId,
+      </if>
+      <if test="field1 != null">
+        FIELD1,
+      </if>
+      <if test="field2 != null">
+        FIELD2,
+      </if>
+      <if test="field3 != null">
+        FIELD3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="teaid != null">
+        #{teaid,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null">
+        #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null">
+        #{field2,jdbcType=INTEGER},
+      </if>
+      <if test="field3 != null">
+        #{field3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Tblcourse">
+    update tblcourse
+    <set>
+      <if test="coursename != null">
+        CourseName = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="teaid != null">
+        TeaId = #{teaid,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null">
+        FIELD1 = #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null">
+        FIELD2 = #{field2,jdbcType=INTEGER},
+      </if>
+      <if test="field3 != null">
+        FIELD3 = #{field3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CourseId = #{courseid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Tblcourse">
+    update tblcourse
+    set CourseName = #{coursename,jdbcType=VARCHAR},
+      TeaId = #{teaid,jdbcType=VARCHAR},
+      FIELD1 = #{field1,jdbcType=VARCHAR},
+      FIELD2 = #{field2,jdbcType=INTEGER},
+      FIELD3 = #{field3,jdbcType=VARCHAR}
+    where CourseId = #{courseid,jdbcType=VARCHAR}
+  </update>
+
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TblteacherMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Tblteacher">
+    <id column="TeaId" jdbcType="VARCHAR" property="teaid" />
+    <result column="TeaName" jdbcType="VARCHAR" property="teaname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TeaId, TeaName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tblteacher
+    where TeaId = #{teaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tblteacher
+    where TeaId = #{teaid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Tblteacher">
+    insert into tblteacher (TeaId, TeaName)
+    values (#{teaid,jdbcType=VARCHAR}, #{teaname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Tblteacher">
+    insert into tblteacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teaid != null">
+        TeaId,
+      </if>
+      <if test="teaname != null">
+        TeaName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teaid != null">
+        #{teaid,jdbcType=VARCHAR},
+      </if>
+      <if test="teaname != null">
+        #{teaname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Tblteacher">
+    update tblteacher
+    <set>
+      <if test="teaname != null">
+        TeaName = #{teaname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TeaId = #{teaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Tblteacher">
+    update tblteacher
+    set TeaName = #{teaname,jdbcType=VARCHAR}
+    where TeaId = #{teaid,jdbcType=VARCHAR}
+  </update>
+</mapper>
