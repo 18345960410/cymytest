@@ -31,7 +31,7 @@ public class Myfirst {
     @ResponseBody
     public Tblcourse getFirst(String id,String name) {
         try {
-
+//
             Tblcourse getfirst = myfirstService.getfirst(id);
             //     logger.info("dddddddd");
             //
