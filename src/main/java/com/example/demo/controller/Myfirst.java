@@ -33,8 +33,6 @@ public class Myfirst {
         try {
 
             Tblcourse getfirst = myfirstService.getfirst(id);
-            //     logger.info("dddddddd");
-            //
             return getfirst;
         } catch (Exception e) {
             e.printStackTrace();
