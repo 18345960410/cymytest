@@ -17,7 +17,8 @@ public class Myfirst {
     @RequestMapping("/first")
     public String first() {
         try {
-            String getfirst = myfirstService.getfirst();
+            String getfirst = "8082";
+            //String getfirst = myfirstService.getfirst();
        //     logger.info("dddddddd");
             //
             return getfirst;
@@ -30,6 +31,19 @@ public class Myfirst {
     @RequestMapping("/getFirst")
     @ResponseBody
     public Tblcourse getFirst(String id,String name) {
+        try {
+//
+            Tblcourse getfirst = myfirstService.getfirst(id);
+            return getfirst;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @RequestMapping("/demo")
+    @ResponseBody
+    public Tblcourse demo(String id,String name) {
         try {
 //
             Tblcourse getfirst = myfirstService.getfirst(id);
