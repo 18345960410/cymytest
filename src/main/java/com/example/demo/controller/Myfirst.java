@@ -47,6 +47,7 @@ public class Myfirst {
         try {
 //
             Tblcourse getfirst = myfirstService.getfirst(id);
+            System.out.println("test");
             return getfirst;
         } catch (Exception e) {
             e.printStackTrace();
